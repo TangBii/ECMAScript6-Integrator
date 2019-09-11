@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+   <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+   <script type="text/javascript">
+      async function getMsg(url) {
+        return new Promise((resolve) => {
+          $.ajax({
+            method: "GET",
+            url,
+            success: data => resolve(data),
+            error: () =>  resolve(false)
+          })
+        })
+      }
+      async function sendRequest(){
+        let data = await getMsg('http://127.0.1.1:3000/news')
+        if(!data){
+          alert('暂时没有新闻推送')
+          return
+        }
+        console.log(data)
+        data = await getMsg('http://127.0.0.1:3000' + data.commentsUrl)
+        console.log(data)
+      }
+      sendRequest()
+   </script>
+</body>
+</html>

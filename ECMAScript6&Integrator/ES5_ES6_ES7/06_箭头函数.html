@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<button id="test">按钮</button>
+   <script type="text/javascript">
+     // 没有参数
+      let fun1 = () => console.log('hello_ES6_01')
+      fun1()
+
+     // 有一个参数
+      let fun2 = a => console.log(a)
+      fun2('hello_ES6_02')
+
+      // 两个或两个以上参数
+      let fun3 = (a, b) => console.log(a+b)
+      fun3('hello_ES6','_03')
+
+      // 一条语句或者表达式
+      let fun4 = () => console.log('hello_ES7_04')
+      fun4()
+
+      let fun5 = (a, b) => a + b
+      console.log(fun5('hello_ES7_0',5))
+
+      // 多条语句或者表达式
+      let fun6 = (a, b) => {
+        return  a+b
+      }
+      console.log('hello_ES7_0' + fun6(1,5))
+
+
+      //this判断
+      let obj1 = {name:'wuKong',
+       get:() => this
+      }
+     console.log(obj1.get())
+
+     let obj2 = {name:'wuKong',
+       get:test.onclick = function(){
+         let fun7 = () => this
+         console.log(fun7())
+       }
+     }
+     obj2.get()
+
+   </script>
+</body>
+</html>

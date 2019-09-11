@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   // 数组去重
+  let arr = [1,1,2,4,7,7,5]
+  let arr1 = arr
+  arr = []
+  let st = new Set(arr1)
+   for(let item of st){
+     arr.push(item)
+   }
+   console.log(arr)
+
+   // Map
+   let mp = new Map([['name', 11],['name1', 12]])
+   console.log(mp)
+</script>
+</body>
+</html>

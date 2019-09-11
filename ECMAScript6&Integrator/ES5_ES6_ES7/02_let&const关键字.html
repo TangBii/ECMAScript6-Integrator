@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<script type="text/javascript">
+   var btns = document.getElementsByTagName('button')
+  // let循环遍历加监听-
+   for(let i = 0; i < btns.length; i++){
+     btns[i].onclick = function () {
+       alert(i)
+     }
+   }
+</script>
+</body>
+</html>

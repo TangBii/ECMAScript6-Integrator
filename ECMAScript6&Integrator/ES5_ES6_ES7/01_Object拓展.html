@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+   // Object.create(obj,[descriptions])
+  var westTravel = {name:'wuKong'}
+  var westTravalExtend = Object.create(westTravel,{
+    age:{
+      value:18,
+      writable:true
+    }
+  })
+   console.log(westTravalExtend.age)
+   westTravalExtend.age = 16;
+   console.log(westTravalExtend.age)
+
+   
+   // Object.defineProperties(obj,[descriptions])
+   Object.defineProperties(westTravel,{
+     getName:{
+       get() {return this.name},
+       set(v) {
+         this.name = v
+         console.log("nice");
+       }
+     }
+   })
+
+   westTravel.getName = 'baJie'
+   console.log(westTravel.name)
+
+</script>
+</body>
+</html>

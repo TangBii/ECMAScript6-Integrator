@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   var obj = {name:"huangTang", age:15}
+   var array = [1, 2, 3, 4]
+   
+   // 对象的解构赋值
+   let {name, age} = obj
+   console.log(name, age)
+   
+   // 数组的解构赋值
+   let [,,a] = array
+   console.log(a)
+
+   //利用解构赋值传递参数
+   function fun([,,a,b]) {
+     return a + b
+   }
+   console.log(fun(array))
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   
+   // 取代arguments
+  function fun1(...value) {
+    console.log(value)
+  }
+  fun1(1, 2, 3)
+   
+   // 拓展
+   let arr = [2, 3, 4, 5]
+   console.log([1,...arr, 6].join('-'))
+   
+</script>
+</body>
+</html>

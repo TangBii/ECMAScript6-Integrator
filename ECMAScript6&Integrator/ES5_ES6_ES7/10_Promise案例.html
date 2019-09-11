@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+      <script type="text/javascript">
+        function getMsg(url) {
+          let xhr = new XMLHttpRequest()
+          let promise = new Promise((solve, reject)=>{
+            xhr.onreadystatechange = () =>{
+              if(xhr.readyState === 4){
+                if(xhr.status === 200){
+                  solve(xhr.responseText);
+                }
+                else {
+                  reject()
+                }
+              }
+            }
+          })
+          xhr.open('GET', url)
+          xhr.send()
+          return promise
+        }
+        
+         getMsg('http://127.0.0.1:3000/news')
+           .then(
+           (data)=>{
+             data = JSON.parse(data)
+             document.write(data.content)
+             return getMsg('http://127.0.0.1:3000' + data.commentsUrl)
+           }, ()=>{
+             console.log('暂时没有新闻')
+           }
+         )
+           .then((data)=>{document.write(JSON.parse(data)[0].content)},()=>{console.log('暂时无评论')})
+      </script>
+</body>
+</html>

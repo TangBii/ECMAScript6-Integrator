@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+   // 类及其继承
+  class Person{
+    constructor(name){
+      this.name = name
+    }
+    sayName(){
+      console.log(this.name)
+    }
+  }
+
+  let p1 = new Person('wuKong')
+
+  class Student extends Person{
+    constructor(name, score){
+      super(name)
+      this.score = score
+    }
+    sayName(){
+      console.log(this.name, this.score)
+    }
+  }
+  let s1 = new Student('bajie', 100)
+
+  p1.sayName()
+  s1.sayName()
+
+
+
+
+</script>
+</body>
+</html>

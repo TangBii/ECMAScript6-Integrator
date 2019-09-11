@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+   <script type="text/javascript">
+      // 深度克隆
+      function checkType(value) {
+        return Object.prototype.toString.call(value).slice(8, -1)
+      }
+      
+      function deepClone(value) {
+        let result = []
+        let type = checkType(value)
+        switch(type){
+          case 'Object': result = {};
+          case 'Array':
+            for( i in value){
+            let trueValue = value[i]
+            if(checkType(trueValue) !== 'Object' && checkType(trueValue) !== 'Array'){
+              result[i] = trueValue
+            }
+            else {
+              result[i] =deepClone(trueValue)
+            }
+          }
+            break;
+          default: console.log('default');return value;
+        }
+        return  result
+      }
+      
+      let obj = [1,2,{name:'wuKong'}]
+      let obj1 = deepClone(obj)
+      obj[2].name = 'kebi'
+      console.log(obj1)
+   </script>
+</body>
+</html>

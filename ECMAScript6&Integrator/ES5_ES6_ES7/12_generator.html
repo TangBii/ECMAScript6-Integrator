@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+   <script type="text/javascript">
+     function getMsg(url) {
+       let xhr = new XMLHttpRequest()
+       xhr.open('GET', url)
+       xhr.send()
+       xhr.onreadystatechange = function () {
+         if(xhr.readyState === 4){
+           if(xhr.status === 200){
+             let data = JSON.parse(xhr.responseText)
+             console.log(data)
+             ge.next(data.commentsUrl)
+           }
+         }
+       }
+     }
+     function* myGe() {
+       let url = yield getMsg('http://127.0.0.1:3000/news')
+       yield getMsg('http://127.0.0.1:3000' + url)
+     }
+     let ge = myGe()
+     ge.next()
+   </script>
+</body>
+</html>
