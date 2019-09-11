@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+   <h2>记事本</h2>
+   <input type="text" ng-model="toDo">
+   <button ng-click="addItem()">添加</button>
+   <button ng-click="removeItem()">删除</button>
+   <div ng-repeat="item in items">
+      <input type="checkbox" ng-model="item.isChecked">
+      <span>{{item.name}}</span>
+   </div>
+</div>
+
+
+<script type="text/javascript" src="js/angular-1.2.29/angular.min.js"></script>
+<script type="text/javascript">
+  angular.module('myApp', [])
+   .controller('myCtrl', ['$scope', function ($scope) {
+     $scope.items= [
+       {name:'学习JavaScript', isChecked:false},
+       {name:'学习node.js', isChecked:false},
+       {name:'学习Java', isChecked:false},
+       {name:'学习illustrator', isChecked:false},
+     ]
+
+
+     $scope.addItem = function () {
+       var obj = {
+         name:this.toDo,
+         isChecked:false
+       }
+       this.items.unshift(obj)
+       this.toDo = ''
+     }
+
+     $scope.removeItem = function () {
+       var oldToDo = this.items
+       this.items = []
+       oldToDo.forEach(function (item) {
+         if(!item.isChecked){
+            $scope.items.push(item)
+         }
+       })
+     }
+
+     // $scope.removeItem = function () {
+     //   this.items.forEach(function (item, index) {
+     //     if(item.isChecked){
+     //       $scope.items.splice(index,1)
+     //       $scope.removeItem()
+     //     }
+     //
+     //   })
+     // }
+
+   }])
+
+</script>
+
+</body>
+</html>

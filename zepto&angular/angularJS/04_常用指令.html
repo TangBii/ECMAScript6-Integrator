@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+   <style>
+      .colorOne{
+         background: pink;
+      }
+      .colorTwo{
+         background: #2aabd2;
+      }
+   </style>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="myController1">
+   <div>
+      <p>价格计算器(自动)</p>
+      <span>单价 </span><input type="number" ng-model="price1">
+      <span>数量 </span><input type="number" ng-model="number1">
+      <p>总价：{{price1 * number1}}</p>
+      <p>**********************************************************************</p>
+   </div>
+
+   <div>
+      <p>价格计算器(手动)</p>
+      <span>单价 </span><input type="number" ng-model="price2">
+      <span>数量 </span><input type="number" ng-model="number2">
+      <button ng-click="getPrice()">计算</button>
+      <p>总价：{{totalPrice}}</p>
+      <p>**********************************************************************</p>
+   </div>
+
+   <div>
+      <p>成员信息</p>
+      <li ng-repeat="person in persons">{{$index + '-' + person.userName + '-' + person.age}}</li>
+      <p>**********************************************************************</p>
+
+   </div>
+
+   <div>
+      <button ng-click="likeToggle()">show</button>
+      <p ng-show="like"> i love u</p>
+      <p ng-hide="like"> u love i</p>
+      <p>**********************************************************************</p>
+
+   </div>
+
+   <div>
+      <div class="box" style="width:100px;height:100px;" ng-style="{background:myColor}" ng-mouseenter="getColor1()" ng-mouseleave="getColor2()"></div>
+      <p>**********************************************************************</p>
+   </div>
+
+   <div>
+      <li ng-repeat="person in persons" ng-class="{colorOne:$odd,colorTwo:$odd}">{{person.userName + '-' + $odd}}</li>
+      <p>**********************************************************************</p>
+   </div>
+</div>
+
+
+<script type="text/javascript" src="js/angular-1.2.29/angular.min.js"></script>
+<script type="text/javascript">
+   angular.module('myApp',[])
+      .controller('myController1',['$scope', function ($scope) {
+        $scope.price1 = 10
+        $scope.number1 = 1
+
+        // ng.click
+        $scope.price2 = 20
+        $scope.number2 = 1
+        $scope.getPrice = function () {
+          $scope.totalPrice = this.price2 * this.number2
+        }
+
+        // ng.repeat
+        $scope.persons = [{userName: 'WuKong',age:14},{userName:'BaJie',age:16},{userName:'WuJing',age:18}, {userName: 'WuKong',age:14}, {userName:'BaJie',age:16}]
+
+        // ng.show
+        $scope.likeToggle = function () {
+          this.like = !this.like
+        }
+
+        // ng-style
+        $scope.myColor = 'yellow'
+        $scope.getColor1 = function () {
+          this.myColor = 'red'
+        }
+        $scope.getColor2 = function () {
+          this.myColor = 'yellow'
+        }
+
+        // ng-class
+
+      }])
+</script>
+</body>
+</html>

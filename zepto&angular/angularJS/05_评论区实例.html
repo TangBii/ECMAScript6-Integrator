@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+   <style>
+      .canUse{
+         display: none;
+      }
+   </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myContrl">
+   <h2>评论区</h2>
+   <textarea cols="30" rows="10" style="resize: none" ng-model="str"></textarea>
+   <div>
+      <button ng-click="saveWords()">保存</button>
+      <button ng-click="loadWords()" ng-class="{canUse:flag}">读取</button>
+      <button ng-click="overWrite()">重写</button>
+   </div>
+   <p>还可以输入{{getNumber()}}字</p>
+</div>
+
+<script type="text/javascript" src="js/angular-1.2.29/angular.min.js"></script>
+<script type="text/javascript">
+   angular.module('myApp',[])
+      .controller('myContrl', ['$scope', function ($scope) {
+        $scope.maxNumber = 20
+        $scope.str = ''
+        $scope.flag = true
+         $scope.getNumber = function () {
+          if(this.str.length >= this.maxNumber){
+            this.str = this.str.slice(0, this.maxNumber)    // 限制最大字数
+          }
+           return this.maxNumber - this.str.length
+         }
+
+         $scope.saveWords = function () {
+            localStorage.setItem('note_key', JSON.stringify(this.str))
+            this.str = ''
+            this.flag = false
+         }
+
+        $scope.loadWords = function () {
+            this.str = JSON.parse(localStorage.getItem('note_key') || '[]')  //解决null
+            localStorage.removeItem('note_key')
+            this.flag = true
+        }
+
+        $scope.overWrite = function () {
+          this.str = ''
+        }
+
+
+      }])
+</script>
+</body>
+</html>
